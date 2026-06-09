@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <article>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+    </article>
+
+    <section>
+        <h2>Commentaires</h2>
+
+        {% if post.comments|length > 0 %}
+            <ul>
+                {% for comment in post.comments %}
+                    <li>
+                        <strong>{{ comment.username }}</strong>
+                        <small>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i') : '' }}</small>
+                        <p>{{ comment.content }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucun commentaire pour le moment.</p>
+        {% endif %}
+    </section>
+
+    <section>
+        <h2>Ajouter un commentaire</h2>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">Envoyer</button>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}

@@ -1,0 +1,8 @@
+<a href="{{ path('app_post_show', {'id': post.id}) }}">Lire la suite</a>
+{% if form %}
+    <h3>Add a comment</h3>
+    {{ form_start(commentForm) }}
+    {{ form_widget(commentForm) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(commentForm) }}
+{% endif %}
